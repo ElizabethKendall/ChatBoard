@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChatBoard</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'user_app/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+     <div class="header">
+         <span class="header_left"><h2>ChatBoard</h2><h3><a href="{% url 'users:index' %}">Home</a></h3></span>
+         <span class="header_right"><h3><a href="{% url 'users:sign_in' %}">Sign In</a></h3></span>
+     </div>
+     <div class="main">
+         <div class="welcome">
+             <h1>Welcome to ChatBoard!</h1>
+             <p>A handy Django message board application built with an MVC framework, login and registration.</p>
+             <a href={% url 'users:sign_in' %}><button class='btn btn-primary'>Start</button></a>
+         </div>
+         <div class="third">
+             <h3>Manage Users</h3>
+             <p>Add, remove and edit users while logged as an admin.</p>
+         </div>
+         <div class="third">
+            <h3>Post Messages</h3>
+            <p>Post messages and comments to other users' ChatBoards.</p>
+        </div>
+        <div class="third">
+            <h3>Edit User Info In-App</h3>
+            <p>Edit your non-admin profile. As admin, edit other users.</h3>
+        </div>        
+     </div>
+</body>
+</html>

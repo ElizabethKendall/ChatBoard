@@ -1,0 +1,198 @@
+*{
+    /* outline: 1px solid red; */
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+head{
+    display: none;
+}
+
+body{
+    width: 1000px;
+    text-align: center;
+}
+
+p{
+    display: block;
+}
+
+.header{
+    width: 1000px;
+    text-align: left;
+    padding: 10px;
+}
+
+.header span, h2, h3, a{
+    line-height: 50px;
+    height: 50px;
+}
+
+.header_left{
+    width: 485px;
+    margin-left: 5px;
+}
+
+.header_left h3{
+    margin-left: 25px;
+}
+.header_right{
+    width: 480px;
+    text-align: right;
+}
+
+.main{
+    width: 100%;
+    padding: 10px;
+}
+
+.welcome{
+    background-color: lightgray;
+    width: 99%;
+    height: 200px;
+    text-align: left;
+    padding: 10px;
+}
+
+.third{
+    width:32%;
+    margin: 5px;
+    padding-left: 10px;
+    text-align: left;
+    height: 150px;
+    vertical-align: top;
+}
+
+.loginTips{
+    background-color: lightgray;
+    padding: 10px;
+    position: fixed;
+    top: 100px;
+    left: 739px;
+    text-align: center;
+}
+
+.loginTips p{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+.loginTips span{
+    width: 100px;
+    color: blue;
+    text-align: left;
+}
+
+
+/* ************END OF CSS FOR INDEX.HTML**************** */
+
+.main_reg{
+    text-align: left;
+    display: block;
+    margin-left: 26px;
+}
+
+.main_reg input{
+    display: block;
+    width: 300px;
+}
+
+.main_reg input[type=submit]{
+    width: 100px;
+    margin-left:200px;
+    background-color: blue;
+}
+
+.errorlist li{
+    color: red;
+    display: block;
+}
+
+/* ************END OF CSS FOR REGISTER.HTML & LOGIN.HTML **************** */
+
+.header_left_login{
+    width: 496px; 
+    margin-left: 5px;
+}
+
+.header_left_login h3{
+    margin-left: 60px;
+}
+
+.header_right_login{
+    width: 469px;
+    text-align: right;
+}
+
+
+.main_reg_new_a, button{
+    margin: 0px;
+    padding: 0px;
+    vertical-align: top;
+    height: 38px;
+    margin-top: -1px;
+}
+
+.main_reg_left{
+    vertical-align: top;
+    /* margin-left: 5px; */
+    width: 300px;
+    height: 50px;
+    display: inline-block;
+}
+
+.main_reg_right{
+    vertical-align: top;
+    width: 654px;
+    height: 50px;
+    display: inline-block;
+    text-align: right;
+}
+
+/* ************END OF CSS FOR HEADER OF NEW.HTML **************** */
+
+.fset_half{
+    width:45%;
+    height:325px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.fset_full{
+    width:98.4%;
+}
+
+.fset_full form, input{
+    width:100%;
+}
+
+#id_description{
+    width: 100%;
+    height: 100px; 
+    vertical-align: top;
+    overflow: scroll;
+    line-height: 25px;
+}
+
+#password_btn{
+    width: 160px;
+    margin-left: 140px;
+}
+
+#description_btn{
+    margin-left: 858px;
+}
+
+legend.scheduler-border {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+#password_fieldset{
+    margin-left: 77px;
+}
+
+/* ************END OF CSS FOR EDIT_ADMIN.HTML **************** */

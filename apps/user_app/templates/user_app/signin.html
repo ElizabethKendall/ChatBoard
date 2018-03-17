@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChatBoard</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'user_app/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <div class="header">
+        <span class="header_left"><h2>ChatBoard</h2><h3><a href="{% url 'users:index' %}">Home</a></h3></span>
+        <span class="header_right"><h3><a href="{% url 'users:sign_in' %}">Sign In</a></h3></span>
+    </div>
+    <div class="main_reg">
+        <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} -->
+        <h3>SignIn</h3><br>
+        <form class="" action={% url 'users:verify_sign_in' %} method="post">
+            {% csrf_token %}
+            {{ mysigninform.as_p }}
+            <input type="submit" name="" value="Sign In" class='btn btn-primary'>
+        </form>
+        <br>
+        <a href="{% url 'users:register' %}">Don't have an account? Register.</a>
+        <div class="loginTips">
+            <h6>Login as an admin</h6> 
+            <p><span>Email:</span>user1@email.com</p>
+            <p><span>Password:</span>123</p>
+            <h6>Login as a non-admin user</h6> 
+            <p><span>Email:</span>user2@email.com</p>
+            <p><span>Password:</span>123</p>
+            <h6>Or, <a href="{% url 'users:register' %}"></a>register your own user!</a></h6>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'msg_app/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <div class="header">
+        {% if request.session.user_level >= 9 %}
+            <span class="header_left_login"><h2>Test App</h2><h3><a href="{% url 'users:dashboard_admin' %}">Dashboard</a></h3><h3><a href="{% url 'users:edit' %}">Profile</a></h3></span>
+        {% endif %}
+        {% if request.session.user_level < 9 %}
+            <span class="header_left_login"><h2>Test App</h2><h3><a href="{% url 'users:dashboard' %}">Dashboard</a></h3><h3><a href="{% url 'users:edit' %}">Profile</a></h3></span>
+        {% endif %}
+        <span class="header_right_login"><h3><a href="{% url 'users:log_out' %}">Log Off</a></h3></span>
+    </div>
+    <div class="main_board"> <!--was main_reg-->
+        <div class="main_selected"><h3>{{selected_user_first_name}} {{selected_user_last_name}}</h3></div><br>
+        <div class="selected_label">Registered:</div>{{selected_user_created_at}}<br>
+        <div class="selected_label">User ID:</div>{{selected_user_id}}<br>
+        <div class="selected_label">Email address:</div>{{selected_user_email}}<br>
+        <div class="selected_label">Description:</div>{{selected_user_description}}
+        <br>
+        <div class="main_selected"><h3>Leave a message for {{selected_user_first_name}}</h3></div><br>
+        {%if error != "False" %}
+            <div class="error">{{error}}</div>
+        {% endif %}
+        <form class="selected_user_message_form" action='/process_message' method='POST'>
+            {% csrf_token %}
+            {{ selected_user_message_form.as_p}}
+            <input type="submit" class='btn btn-primary' id="message_btn" value="Post">
+            <input type="hidden" name="author" value = {{request.session.user_id}}>
+            <input type="hidden" name="receiver" value = {{selected_user_id}}>
+        </form>
+        {% for message_tuple in selected_messages %}
+            <!-- TODO: May want to reformat as a table and use Bootstrap to format -->
+            <br>
+            <div class="message_meta_left"><a href="{% url 'message:show' message_tuple.0.author.id %}">{{message_tuple.0.author.first_name}} {{message_tuple.0.author.last_name}}</a> wrote</div> 
+            <div class="message_meta_right">{{message_tuple.1}}</div>
+            <p class="message">{{message_tuple.0.content}}</p>
+
+            {% for key_id, value_comment_tuple_list in selected_comments.iteritems %}
+                {% if message_tuple.0.id == key_id %}
+                    {% for comment_tuple in value_comment_tuple_list %}                    
+                        <div class="comment_meta_left"><a href="{% url 'message:show' comment_tuple.0.author.id %}">{{comment_tuple.0.author.first_name}} {{comment_tuple.0.author.last_name}}</a> wrote</div>
+                        <div class="comment_meta_right">{{comment_tuple.1}}</div>
+                        <p class="comment_content">{{comment_tuple.0.content}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <form class="comment_form" action='/process_comment' method='POST'>
+                {% csrf_token %}
+                {{ message_comment_form.as_p}}    
+                <input type="submit" class='btn btn-primary' id="comment_btn" value="Post">
+                <input type="hidden" name="author" value = {{request.session.user_id}}>
+                <input type="hidden" name="message" value = {{message_tuple.0.id}}>            
+            </form>
+        {% endfor %}
+</body>
+</html>

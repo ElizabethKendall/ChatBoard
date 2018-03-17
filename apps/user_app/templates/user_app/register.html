@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ChatBoard</title>
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'user_app/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <div class="header">
+        <span class="header_left"><h2>ChatBoard</h2><h3><a href="{% url 'users:index' %}">Home</a></h3></span>
+        <span class="header_right"><h3><a href="{% url 'users:sign_in' %}">Sign In</a></h3></span>
+    </div>
+    <div class="main_reg">
+        <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} -->
+        <h3>Register</h3><br>
+        <form class="" action={% url 'users:create' %} method="post">
+            {% csrf_token %}
+            {{ myregistrationform.as_p }}
+            <input type="submit" name="" value="Register" class='btn btn-primary'>
+        </form>
+        <br>
+        <a href="{% url 'users:sign_in' %}">Already have an account? Login.</a>
+    </div>
+</body>
+</html>
