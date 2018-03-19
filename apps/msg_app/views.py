@@ -97,13 +97,14 @@ def show(request, number, *bound_forms):
 
 def process_message(request):
     if request.method == "POST":    
+        print request.POST
         bound_form = CreateMessage_Form(request.POST)
         error = "False"
-        if bound_form.is_valid():
+        if bound_form.is_valid() and (request.session['user_id'] == 17 or request.session['user_id'] == 18 or request.session['user_id'] == 19 or request.session['user_id'] == 20):
             #https://stackoverflow.com/questions/621212/another-django-forms-foreign-key-in-hidden-field
             bound_form.save()        
-        else: 
-            error = 'There was an error with your message, and it was not saved. Message content must be at least 15 characters.'
+        else:
+            error = 'There was an error with your message, and it was not saved. Message content must be at least 15 characters, and you must be logged in as a user with ID 17, 18, 19, or 20, i.e. as one of the Bluth family.'
         selected_user_id = int(request.POST['receiver'])
         bound_forms = {
             'selected_user_message_form': bound_form,
@@ -117,11 +118,12 @@ def process_comment(request):
     if request.method == "POST":    
         bound_form = CreateComment_Form(request.POST)
         error = "False"
-        if bound_form.is_valid():
+        print "processing comment..."
+        if bound_form.is_valid() and (request.session['user_id'] == 17 or request.session['user_id'] == 18 or request.session['user_id'] == 19 or request.session['user_id'] == 20):
             #https://stackoverflow.com/questions/621212/another-django-forms-foreign-key-in-hidden-field
             bound_form.save()
         else: 
-            error = 'There was an error with your comment, and it was not saved. Comment content must be at least 15 characters.'
+            error = 'There was an error with your comment, and it was not saved. Comment content must be at least 15 characters, and you must be logged in as a user with ID 17, 18, 19, or 20, i.e. as one of the Bluth family.'
         #     if request.session['user_level'] >= 9:
         #         return redirect(reverse("users:dashboard_admin")) 
         #     else:

@@ -53,7 +53,6 @@ p{
     height: 200px;
     text-align: left;
     padding: 10px;
-    margin
 }
 
 .third{
@@ -91,7 +90,7 @@ p{
 /* ************END OF CSS FOR REGISTER.HTML & LOGIN.HTML **************** */
 
 .header_left_login{
-    width: 485px;
+    width: 496px;
     margin-left: 5px;
 }
 
@@ -100,7 +99,7 @@ p{
 }
 
 .header_right_login{
-    width: 480px;
+    width: 469px;
     text-align: right;
 }
 
