@@ -73,7 +73,6 @@ def log_out(request):
 
 def edit(request):
     user =  User.objects.get(id=request.session['user_id'])
-    print request.session['user_id']
     myupdateinfoform = UpdateInfo_Form(instance=user)
     myupdatepasswordform = UpdatePasswordForm()
     myupdatedescriptionform = UpdateDescription_Form(instance=user)
@@ -97,7 +96,7 @@ def edit_admin(request, number):
     }
     return render(request, "user_app/edit_admin.html", context)
 def update_my_info(request, number):
-    if request.session['user_level']>=9 or request.session['user_id'] == number:
+    if request.session['user_level']>=9 or request.session['user_id'] == int(number):
         if request.method == "POST":
             user = User.objects.get(id=number)
             my_bound_form = UpdateInfo_Form(request.POST, instance=user)
@@ -108,10 +107,7 @@ def update_my_info(request, number):
                     'users':User.objects.all()
                 }
                 return render(request, "user_app/dashboard_admin.html", context)
-            else:
-                print "*USER APP BOUND FORMS*"*10                
-                print my_bound_form
-                print "*USER APP BOUND FORMS*"*10                
+            else:            
                 context = {
                     'user': user,
                     'myupdateinfoform': my_bound_form,
@@ -125,7 +121,7 @@ def update_my_info(request, number):
         }
         return render(request, "user_app/dashboard.html", context) 
 def update_my_description(request, number):
-    if request.session['user_level']>=9 or request.session.user_id == number:
+    if request.session['user_level']>=9 or request.session['user_id'] == int(number):
         if request.method == "POST":
             user = User.objects.get(id=number)
             my_bound_form = UpdateDescription_Form(request.POST, instance=user)
